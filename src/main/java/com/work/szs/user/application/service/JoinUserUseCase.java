@@ -25,6 +25,7 @@ public class JoinUserUseCase {
             "조조", "8103262715702"
     );
 
+    // todo : 주민번호 암호화 방식 변경
     public void join(JoinUserRequest joinUserRequest) {
         String parsedRegNo = joinUserRequest.getRegNo().replace("-", "");
         validatePermittedUser(joinUserRequest.getName(), parsedRegNo);

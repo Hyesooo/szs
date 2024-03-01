@@ -1,4 +1,4 @@
-package com.work.szs.user.application.config;
+package com.work.szs.common.config;
 
 import com.work.szs.common.util.JwtUtil;
 import jakarta.servlet.FilterChain;

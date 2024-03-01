@@ -1,4 +1,4 @@
-package com.work.szs.user.application.config;
+package com.work.szs.common.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
