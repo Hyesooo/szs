@@ -29,6 +29,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(MissingPathVariableException.class)
     protected ResponseEntity<ApiRes<?>> handleMissingPathVariableException(MissingPathVariableException ex) {
+        log.error(ex.getMessage(), ex);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiRes.createError(HttpStatus.BAD_REQUEST.value(), ex.getMessage()));
     }
 
@@ -40,6 +41,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(MissingRequestHeaderException.class)
     protected ResponseEntity<ApiRes<?>> handleMissingRequestHeaderException(MissingRequestHeaderException ex) {
+        log.error(ex.getMessage(), ex);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiRes.createError(HttpStatus.BAD_REQUEST.value(), ex.getMessage()));
     }
 
@@ -51,6 +53,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(HttpMessageNotReadableException.class)
     protected ResponseEntity<ApiRes<?>> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
+        log.error(ex.getMessage(), ex);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiRes.createError(HttpStatus.BAD_REQUEST.value(), ex.getMessage()));
     }
 
@@ -62,6 +65,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(MissingServletRequestParameterException.class)
     protected ResponseEntity<ApiRes<?>> handleMissingRequestHeaderExceptionException(MissingServletRequestParameterException ex) {
+        log.error(ex.getMessage(), ex);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiRes.createError(HttpStatus.BAD_REQUEST.value(), ex.getMessage()));
     }
 
@@ -74,6 +78,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     protected ResponseEntity<ApiRes<?>> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+        log.error(ex.getMessage(), ex);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiRes.createFail(ex.getBindingResult()));
     }
 
@@ -85,6 +90,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     protected ResponseEntity<ApiRes<?>> handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException ex) {
+        log.error(ex.getMessage(), ex);
         return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body(ApiRes.createError(HttpStatus.METHOD_NOT_ALLOWED.value(), ex.getMessage()));
     }
 
@@ -96,6 +102,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(HttpClientErrorException.BadRequest.class)
     protected ResponseEntity<ApiRes<?>> handleBadRequestException(HttpClientErrorException ex) {
+        log.error(ex.getMessage(), ex);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiRes.createError(HttpStatus.BAD_REQUEST.value(), ex.getMessage()));
     }
 
@@ -107,6 +114,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(NoHandlerFoundException.class)
     protected ResponseEntity<ApiRes<?>> handleNoHandlerFoundExceptionException(NoHandlerFoundException ex) {
+        log.error(ex.getMessage(), ex);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ApiRes.createError(HttpStatus.NOT_FOUND.value(), ex.getMessage()));
     }
 
@@ -115,6 +123,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(BusinessInvalidValueException.class)
     protected ResponseEntity<ApiRes<?>> handleBusinessInvalidValueException(BusinessInvalidValueException ex) {
+        log.error(ex.getMessage(), ex);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiRes.createError(HttpStatus.BAD_REQUEST.value(), ex.getMessage()));
     }
 
@@ -128,6 +137,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(Exception.class)
     protected final ResponseEntity<ApiRes<?>> handleAllExceptions(Exception ex) {
+        log.error(ex.getMessage(), ex);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiRes.createError(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage()));
     }
 }
