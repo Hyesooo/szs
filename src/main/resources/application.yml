@@ -33,3 +33,14 @@ jwt:
 springdoc:
   swagger-ui:
     path: /3o3/swagger.html
+
+base-data:
+  url: "https://codetest-v4.3o3.co.kr"
+  x-api-key: "oKJg+BDBIjKkayD9DgNHNQ=="
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 20000
