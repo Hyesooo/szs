@@ -16,6 +16,6 @@ public class BearerAuthRequestInterceptor implements RequestInterceptor {
 
     @Override
     public void apply(RequestTemplate template) {
-        template.header(HttpHeaders.AUTHORIZATION, "Bearer " + token);
+        template.header("X-API-KEY", token);
     }
 }

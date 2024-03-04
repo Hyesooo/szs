@@ -1,4 +1,4 @@
-package com.work.szs.refund.domain.enums;
+package com.work.szs.scrap.domain.enums;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

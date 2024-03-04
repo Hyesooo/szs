@@ -1,17 +1,17 @@
-package com.work.szs.refund.domain;
+package com.work.szs.scrap.domain;
 
 import com.work.szs.common.entity.BaseEntity;
-import com.work.szs.refund.domain.enums.IncomeDeductType;
+import com.work.szs.scrap.domain.enums.DeductType;
 import com.work.szs.user.domain.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "income_deducts")
+@Table(name = "deducts")
 @NoArgsConstructor
 @Getter
-public class IncomeDeduct extends BaseEntity {
+public class Deduct extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", updatable = false)
@@ -24,16 +24,16 @@ public class IncomeDeduct extends BaseEntity {
     private Integer month;
 
     @Column(name = "amount", nullable = false)
-    private Long amount;
+    private Double amount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", updatable = false)
     private User user;
 
     @Enumerated(EnumType.STRING)
-    private IncomeDeductType type;
+    private DeductType type;
 
-    private IncomeDeduct(int year, int month, long amount, User user, IncomeDeductType type) {
+    private Deduct(int year, int month, double amount, User user, DeductType type) {
         this.year = year;
         this.month = month;
         this.amount = amount;
@@ -41,8 +41,16 @@ public class IncomeDeduct extends BaseEntity {
         this.type = type;
     }
 
-    public static IncomeDeduct of(int year, int month, long amount, User user, IncomeDeductType type) {
-        return new IncomeDeduct(year, month, amount, user, type);
+    private Deduct(int year, int month, double amount, DeductType type) {
+        this(year, month, amount, null, type);
+    }
+
+    public static Deduct of(int year, int month, double amount, User user, DeductType type) {
+        return new Deduct(year, month, amount, user, type);
+    }
+
+    public static Deduct withoutUser(int year, int month, double amount, DeductType type) {
+        return new Deduct(year, month, amount, type);
     }
 
 }

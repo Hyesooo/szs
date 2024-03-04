@@ -34,7 +34,7 @@ springdoc:
   swagger-ui:
     path: /3o3/swagger.html
 
-base-data:
+scrap:
   url: "https://codetest-v4.3o3.co.kr"
   x-api-key: "oKJg+BDBIjKkayD9DgNHNQ=="
 
