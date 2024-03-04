@@ -16,7 +16,6 @@ public class JoinUserUseCase {
     private final UpdateUserPort updateUserPort;
     private final BCryptPasswordEncoder passwordEncoder;
 
-    // todo : 허가된 사용자 데이터 따로 관리
     private static final Map<String, String> permittedUserMap = Map.of(
             "동탁", "9211081582816",
             "관우", "6811081582816",

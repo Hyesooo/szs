@@ -34,7 +34,6 @@ public class UserController {
         return ApiRes.createSuccessWithNoContent();
     }
 
-    // todo : Map대신 VO 쓸지 판단
     @PostMapping("/login")
     @Operation(summary = "로그인", description = "사용자가 로그인을 한다.", responses = {
             @ApiResponse(responseCode = "200", description = "로그인 성공")})
