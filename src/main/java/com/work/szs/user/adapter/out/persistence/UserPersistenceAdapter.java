@@ -26,14 +26,4 @@ public class UserPersistenceAdapter implements UpdateUserPort, LoadUserPort {
     public Optional<User> loadUserByUserId(String userId) {
         return userRepository.findByUserId(userId);
     }
-
-    @Override
-    public List<User> loadUserByName(String name) {
-        return userRepository.findByName(name);
-    }
-
-    @Override
-    public Optional<User> loadUserById(Long id) {
-        return userRepository.findById(id);
-    }
 }
