@@ -95,6 +95,12 @@ application 계층에서 adapter로의 의존성을 피하기 위해 모델은 *
 
 ```
 ### ERD
+`Deducts` : 소득공제(국민연금,신용카드) 년/월별 내역 테이블
+`TaxCredits` : 세액공제 년도별 내역 테이블 
+`RefundResults` : 결정세액 계산을 위한 집계 테이블  
+`Users` : 사용자 테이블
+
+
 <img width="525" alt="스크린샷 2024-03-05 22 29 20" src="https://github.com/Hyesooo/szs/assets/25236852/7daac716-24ea-4a96-b544-fec9f3c09f14">
 
 
