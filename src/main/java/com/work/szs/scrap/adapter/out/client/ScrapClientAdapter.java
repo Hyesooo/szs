@@ -19,6 +19,7 @@ public class ScrapClientAdapter implements ScrapDataPort {
     @Override
     public ScrapDataCommand getScrapData(ScrapDataRequest request) {
         ScrapResult info = scrapClient.scrapBaseInfo(request).getData();
-        return info.convertToCommand();
+        ScrapDataCommand command = info.convertToCommand();
+        return command;
     }
 }
