@@ -7,6 +7,7 @@ import com.work.szs.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @PersistenceAdapter
@@ -24,6 +25,11 @@ public class UserPersistenceAdapter implements UpdateUserPort, LoadUserPort {
     @Override
     public Optional<User> loadUserByUserId(String userId) {
         return userRepository.findByUserId(userId);
+    }
+
+    @Override
+    public List<User> loadUserByName(String name) {
+        return userRepository.findByName(name);
     }
 
     @Override

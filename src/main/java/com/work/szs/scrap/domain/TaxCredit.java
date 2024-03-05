@@ -1,6 +1,7 @@
 package com.work.szs.scrap.domain;
 
 import com.work.szs.common.entity.BaseEntity;
+import com.work.szs.scrap.application.dto.command.TaxCreditCommand;
 import com.work.szs.user.domain.User;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -16,7 +17,7 @@ public class TaxCredit extends BaseEntity {
     @Column(name = "id", updatable = false)
     private Long id;
 
-    @Column(name = "year", nullable = false)
+    @Column(name = "tax_year", nullable = false)
     private Integer year;
 
     @Column(name = "amount", nullable = false)
@@ -26,22 +27,14 @@ public class TaxCredit extends BaseEntity {
     @JoinColumn(name = "user_id", updatable = false)
     private User user;
 
-    private TaxCredit(long amount, int year, User user) {
+    private TaxCredit(int year, long amount, User user) {
         this.amount = amount;
         this.year = year;
         this.user = user;
     }
 
-    private TaxCredit(long amount, int year) {
-        this(amount, year, null);
-    }
-
-    public static TaxCredit of(long amount, int year, User user) {
-        return new TaxCredit(amount, year, user);
-    }
-
-    public static TaxCredit withoutUser(long amount, int year) {
-        return new TaxCredit(amount, year);
+    public static TaxCredit toEntity(TaxCreditCommand command, User user) {
+        return new TaxCredit(command.getYear(), command.getAmount(), user);
     }
 
 }
