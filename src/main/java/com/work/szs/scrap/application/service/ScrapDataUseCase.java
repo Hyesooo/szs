@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ScarpDataUseCase {
+public class ScrapDataUseCase {
     private final ScrapDataPort scrapDataPort;
 
     public void inputBaseData(ScrapDataRequest request) {
-        scrapDataPort.getScrapData(request);
+         scrapDataPort.getScrapData(request);
     }
 
 }

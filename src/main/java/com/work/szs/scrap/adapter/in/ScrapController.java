@@ -3,7 +3,7 @@ package com.work.szs.scrap.adapter.in;
 import com.work.szs.common.annotation.WebAdapter;
 import com.work.szs.common.api.response.ApiRes;
 import com.work.szs.scrap.application.dto.request.ScrapDataRequest;
-import com.work.szs.scrap.application.service.ScarpDataUseCase;
+import com.work.szs.scrap.application.service.ScrapDataUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/szs")
 public class ScrapController {
-    private final ScarpDataUseCase scarpDataUseCase;
+    private final ScrapDataUseCase scrapDataUseCase;
 
     @PostMapping("/scrap")
     @Operation(summary = "스크래핑", description = "계산 기초 정보 조회를 위한 스크래핑을 한다.", responses = {
             @ApiResponse(responseCode = "200", description = "스크래핑 성공")})
     public ApiRes<?> scrap(@Valid @RequestBody ScrapDataRequest dto) {
-        scarpDataUseCase.inputBaseData(dto);
+        scrapDataUseCase.inputBaseData(dto);
         return ApiRes.createSuccessWithNoContent();
     }
 }
