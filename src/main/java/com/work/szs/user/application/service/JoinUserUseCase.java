@@ -6,6 +6,7 @@ import com.work.szs.user.application.port.out.UpdateUserPort;
 import com.work.szs.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.encrypt.TextEncryptor;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -15,7 +16,7 @@ import java.util.Map;
 public class JoinUserUseCase {
     private final UpdateUserPort updateUserPort;
     private final BCryptPasswordEncoder passwordEncoder;
-
+    private final TextEncryptor textEncryptor;
     private static final Map<String, String> permittedUserMap = Map.of(
             "동탁", "9211081582816",
             "관우", "6811081582816",
@@ -24,13 +25,12 @@ public class JoinUserUseCase {
             "조조", "8103262715702"
     );
 
-    // todo : 주민번호 암호화 방식 변경
     public void join(JoinUserRequest joinUserRequest) {
         String parsedRegNo = joinUserRequest.getRegNo().replace("-", "");
         validatePermittedUser(joinUserRequest.getName(), parsedRegNo);
 
         joinUserRequest.setPassword(passwordEncoder.encode(joinUserRequest.getPassword()));
-        joinUserRequest.setRegNo(passwordEncoder.encode(parsedRegNo));
+        joinUserRequest.setRegNo(textEncryptor.encrypt(parsedRegNo));
 
         User user = User.of(joinUserRequest.getUserId(), joinUserRequest.getPassword(), joinUserRequest.getName(), joinUserRequest.getRegNo());
         updateUserPort.joinUser(user);
