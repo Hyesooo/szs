@@ -9,8 +9,8 @@ import com.work.szs.refund.application.port.persistence.UpdateTaxCreditPort;
 import com.work.szs.refund.domain.Deduct;
 import com.work.szs.refund.domain.RefundResult;
 import com.work.szs.refund.domain.TaxCredit;
-import com.work.szs.scrap.application.dto.command.DeductCommand;
-import com.work.szs.scrap.application.dto.command.ScrapDataCommand;
+import com.work.szs.scrap.application.dto.result.DeductResult;
+import com.work.szs.scrap.application.dto.result.ScrapDataResult;
 import com.work.szs.scrap.application.dto.request.ScrapDataRequest;
 import com.work.szs.scrap.application.port.client.ScrapDataPort;
 import com.work.szs.user.application.port.out.LoadUserPort;
@@ -38,12 +38,12 @@ public class ScrapDataUseCase {
         User user = loadUserPort.loadUserByUserId(tokenDto.getUserId())
                 .orElseThrow(() -> new BusinessInvalidValueException("사용자 정보를 확인해주세요"));
 
-        ScrapDataCommand command = scrapDataPort.getScrapData(new ScrapDataRequest(user.getName(),
+        ScrapDataResult command = scrapDataPort.getScrapData(new ScrapDataRequest(user.getName(),
                 user.getRegNo().replaceAll("(\\d{6})(\\d{7})", "$1-$2")));
 
         // 소득공제
         command.getDeductList().forEach(deduct -> updateDeductPort.saveDeduct(Deduct.toEntity(deduct, user)));
-        long totalDeductAmount = command.getDeductList().stream().mapToLong(DeductCommand::getAmount).sum();
+        long totalDeductAmount = command.getDeductList().stream().mapToLong(DeductResult::getAmount).sum();
 
         // 세액공제
         updateTaxCreditPort.saveTaxCredit(TaxCredit.toEntity(command.getTaxCredit(), user));

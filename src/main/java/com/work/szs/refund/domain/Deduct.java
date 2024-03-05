@@ -2,7 +2,7 @@ package com.work.szs.refund.domain;
 
 import com.work.szs.common.entity.BaseEntity;
 import com.work.szs.refund.domain.enums.DeductType;
-import com.work.szs.scrap.application.dto.command.DeductCommand;
+import com.work.szs.scrap.application.dto.result.DeductResult;
 import com.work.szs.user.domain.User;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -43,7 +43,7 @@ public class Deduct extends BaseEntity {
         this.type = type;
     }
 
-    public static Deduct toEntity(DeductCommand command, User user) {
+    public static Deduct toEntity(DeductResult command, User user) {
         return new Deduct(command.getYear(), command.getMonth(), command.getAmount(), user, command.getType());
     }
 

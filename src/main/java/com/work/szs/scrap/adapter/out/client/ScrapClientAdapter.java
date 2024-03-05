@@ -1,8 +1,8 @@
 package com.work.szs.scrap.adapter.out.client;
 
 import com.work.szs.common.annotation.ClientAdapter;
-import com.work.szs.scrap.adapter.out.client.dto.ScrapResult;
-import com.work.szs.scrap.application.dto.command.ScrapDataCommand;
+import com.work.szs.scrap.adapter.out.client.model.ScrapResponse;
+import com.work.szs.scrap.application.dto.result.ScrapDataResult;
 import com.work.szs.scrap.application.dto.request.ScrapDataRequest;
 import com.work.szs.scrap.application.port.client.ScrapDataPort;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +17,8 @@ public class ScrapClientAdapter implements ScrapDataPort {
     private final ScrapClient scrapClient;
 
     @Override
-    public ScrapDataCommand getScrapData(ScrapDataRequest request) {
-        ScrapResult info = scrapClient.scrapBaseInfo(request).getData();
+    public ScrapDataResult getScrapData(ScrapDataRequest request) {
+        ScrapResponse info = scrapClient.scrapBaseInfo(request).getData();
         return info.convertToCommand();
     }
 }

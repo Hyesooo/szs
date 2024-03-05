@@ -1,9 +1,9 @@
-package com.work.szs.scrap.adapter.out.client.dto;
+package com.work.szs.scrap.adapter.out.client.config;
 
 import lombok.Getter;
 
 @Getter
-public class ScrapDataResponse<T> {
+public class ClientApiRes<T> {
     private String status;
     private T data;
     private Error errors;

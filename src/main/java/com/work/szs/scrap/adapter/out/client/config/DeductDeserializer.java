@@ -5,20 +5,20 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.work.szs.scrap.adapter.out.client.dto.ScrapResult;
+import com.work.szs.scrap.adapter.out.client.model.ScrapResponse;
 import com.work.szs.refund.domain.enums.DeductType;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeductDeserializer extends JsonDeserializer<List<ScrapResult.Deduction>> {
+public class DeductDeserializer extends JsonDeserializer<List<ScrapResponse.Deduction>> {
     private int year;
 
     @Override
-    public List<ScrapResult.Deduction> deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException {
+    public List<ScrapResponse.Deduction> deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException {
         JsonNode rootNode = jp.getCodec().readTree(jp);
-        List<ScrapResult.Deduction> deductions = new ArrayList<>();
+        List<ScrapResponse.Deduction> deductions = new ArrayList<>();
 
         processNationalPension(rootNode, deductions);
 
@@ -29,17 +29,17 @@ public class DeductDeserializer extends JsonDeserializer<List<ScrapResult.Deduct
         return deductions;
     }
 
-    private void processTaxCredit(JsonNode rootNode, List<ScrapResult.Deduction> deductions) {
+    private void processTaxCredit(JsonNode rootNode, List<ScrapResponse.Deduction> deductions) {
         if (rootNode.has("세액공제")) {
             JsonNode taxCreditNode = rootNode.get("세액공제");
             double amount = parseAmount(taxCreditNode.asText());
 
-            deductions.add(new ScrapResult.Deduction(year, DeductType.TAX_CREDIT, amount));
+            deductions.add(new ScrapResponse.Deduction(year, DeductType.TAX_CREDIT, amount));
         }
     }
 
 
-    private void processNationalPension(JsonNode rootNode, List<ScrapResult.Deduction> deductions) {
+    private void processNationalPension(JsonNode rootNode, List<ScrapResponse.Deduction> deductions) {
         if (rootNode.has("국민연금")) {
             ArrayNode nationalPensionArray = (ArrayNode) rootNode.get("국민연금");
             for (JsonNode deductionNode : nationalPensionArray) {
@@ -48,13 +48,13 @@ public class DeductDeserializer extends JsonDeserializer<List<ScrapResult.Deduct
                 int month = Integer.parseInt(monthStr.split("-")[1]);
                 double amount = parseAmount(deductionNode.get("공제액").asText());
 
-                deductions.add(new ScrapResult.Deduction(year, month, DeductType.NATIONAL_PENSION, amount));
+                deductions.add(new ScrapResponse.Deduction(year, month, DeductType.NATIONAL_PENSION, amount));
             }
         }
     }
 
 
-    private void processCreditCardDeductions(JsonNode rootNode, List<ScrapResult.Deduction> deductions) {
+    private void processCreditCardDeductions(JsonNode rootNode, List<ScrapResponse.Deduction> deductions) {
         if (rootNode.has("신용카드소득공제")) {
             JsonNode creditCardDeductionNode = rootNode.get("신용카드소득공제");
             year = creditCardDeductionNode.get("year").asInt();
@@ -67,7 +67,7 @@ public class DeductDeserializer extends JsonDeserializer<List<ScrapResult.Deduct
                         int month = Integer.parseInt(monthStr);
                         double amount = parseAmount(entry.getValue().asText());
 
-                        deductions.add(new ScrapResult.Deduction(year, month, DeductType.CREDIT_CARD, amount));
+                        deductions.add(new ScrapResponse.Deduction(year, month, DeductType.CREDIT_CARD, amount));
                     });
                 }
             }

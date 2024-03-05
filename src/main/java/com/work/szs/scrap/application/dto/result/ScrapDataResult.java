@@ -1,4 +1,4 @@
-package com.work.szs.scrap.application.dto.command;
+package com.work.szs.scrap.application.dto.result;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,10 +7,10 @@ import java.util.List;
 
 @Getter
 @AllArgsConstructor
-public class ScrapDataCommand {
+public class ScrapDataResult {
     private String name;
     private Integer year;
     private Long totalIncomeAmount;
-    private List<DeductCommand> deductList;
-    private TaxCreditCommand taxCredit;
+    private List<DeductResult> deductList;
+    private TaxCreditResult taxCredit;
 }

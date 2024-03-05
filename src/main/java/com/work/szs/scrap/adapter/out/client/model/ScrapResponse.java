@@ -1,11 +1,11 @@
-package com.work.szs.scrap.adapter.out.client.dto;
+package com.work.szs.scrap.adapter.out.client.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.work.szs.scrap.adapter.out.client.config.DeductDeserializer;
-import com.work.szs.scrap.application.dto.command.DeductCommand;
-import com.work.szs.scrap.application.dto.command.ScrapDataCommand;
-import com.work.szs.scrap.application.dto.command.TaxCreditCommand;
+import com.work.szs.scrap.application.dto.result.DeductResult;
+import com.work.szs.scrap.application.dto.result.ScrapDataResult;
+import com.work.szs.scrap.application.dto.result.TaxCreditResult;
 import com.work.szs.refund.domain.enums.DeductType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
-public class ScrapResult {
+public class ScrapResponse {
     @JsonProperty("이름")
     private String name;
 
@@ -40,25 +40,25 @@ public class ScrapResult {
         }
     }
 
-    public ScrapDataCommand convertToCommand() {
-        List<DeductCommand> deductList = this.deductions.stream()
+    public ScrapDataResult convertToCommand() {
+        List<DeductResult> deductList = this.deductions.stream()
                 .filter(deduction -> deduction.type != DeductType.TAX_CREDIT)
-                .map(deduction -> new DeductCommand(deduction.year, deduction.month, Math.round(deduction.amount), deduction.type))
+                .map(deduction -> new DeductResult(deduction.year, deduction.month, Math.round(deduction.amount), deduction.type))
                 .collect(Collectors.toList());
 
         int year = deductList != null && !deductList.isEmpty() ? deductList.get(0).getYear() : 0;
 
-        TaxCreditCommand taxCredit = null;
+        TaxCreditResult taxCredit = null;
         Deduction taxCreditDeduction = this.deductions.stream()
                 .filter(deduction -> deduction.type == DeductType.TAX_CREDIT)
                 .findFirst()
                 .orElse(null);
 
         if (taxCreditDeduction != null) {
-            taxCredit = new TaxCreditCommand(taxCreditDeduction.year, (long) taxCreditDeduction.amount);
+            taxCredit = new TaxCreditResult(taxCreditDeduction.year, (long) taxCreditDeduction.amount);
             if (year == 0) year = taxCredit.getYear();
         }
 
-        return new ScrapDataCommand(this.name, year, this.totalIncomeAmount, deductList, taxCredit);
+        return new ScrapDataResult(this.name, year, this.totalIncomeAmount, deductList, taxCredit);
     }
 }

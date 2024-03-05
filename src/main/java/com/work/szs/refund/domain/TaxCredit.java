@@ -1,7 +1,7 @@
 package com.work.szs.refund.domain;
 
 import com.work.szs.common.entity.BaseEntity;
-import com.work.szs.scrap.application.dto.command.TaxCreditCommand;
+import com.work.szs.scrap.application.dto.result.TaxCreditResult;
 import com.work.szs.user.domain.User;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -33,7 +33,7 @@ public class TaxCredit extends BaseEntity {
         this.user = user;
     }
 
-    public static TaxCredit toEntity(TaxCreditCommand command, User user) {
+    public static TaxCredit toEntity(TaxCreditResult command, User user) {
         return new TaxCredit(command.getYear(), command.getAmount(), user);
     }
 
