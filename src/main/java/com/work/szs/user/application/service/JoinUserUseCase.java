@@ -8,11 +8,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.encrypt.TextEncryptor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class JoinUserUseCase {
     private final UpdateUserPort updateUserPort;
     private final BCryptPasswordEncoder passwordEncoder;
@@ -24,6 +26,7 @@ public class JoinUserUseCase {
             "조조", "8103262715702"
     );
 
+    @Transactional
     public void join(JoinUserRequest joinUserRequest) {
         String parsedRegNo = joinUserRequest.getRegNo().replace("-", "");
         validatePermittedUser(joinUserRequest.getName(), parsedRegNo);
