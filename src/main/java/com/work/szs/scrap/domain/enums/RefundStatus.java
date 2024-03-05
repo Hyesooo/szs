@@ -6,9 +6,7 @@ import lombok.RequiredArgsConstructor;
 public enum RefundStatus {
     PREPARE("초기상태"),
     SCRAP("기초정보스크랩"),
-    COMPLETE_TAX_BASE("과세표준계산"),
-    COMPLETE_TAX_AMOUNT("산출세액계산"),
-    COMPLETE_DETERMINED_TAX("결정세액 계산");
+    COMPLETE("계산완료");
 
     private final String description;
 
