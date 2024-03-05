@@ -6,7 +6,7 @@ import com.work.szs.scrap.adapter.out.client.config.DeductDeserializer;
 import com.work.szs.scrap.application.dto.command.DeductCommand;
 import com.work.szs.scrap.application.dto.command.ScrapDataCommand;
 import com.work.szs.scrap.application.dto.command.TaxCreditCommand;
-import com.work.szs.scrap.domain.enums.DeductType;
+import com.work.szs.refund.domain.enums.DeductType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

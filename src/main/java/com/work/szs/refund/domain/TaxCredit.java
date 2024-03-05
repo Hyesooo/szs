@@ -1,4 +1,4 @@
-package com.work.szs.scrap.domain;
+package com.work.szs.refund.domain;
 
 import com.work.szs.common.entity.BaseEntity;
 import com.work.szs.scrap.application.dto.command.TaxCreditCommand;

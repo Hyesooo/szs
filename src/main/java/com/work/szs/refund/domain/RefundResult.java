@@ -1,9 +1,9 @@
-package com.work.szs.scrap.domain;
+package com.work.szs.refund.domain;
 
 import com.work.szs.common.entity.BaseEntity;
 import com.work.szs.common.exception.BusinessInvalidValueException;
-import com.work.szs.scrap.domain.enums.RefundStatus;
-import com.work.szs.scrap.domain.enums.TaxBracket;
+import com.work.szs.refund.domain.enums.RefundStatus;
+import com.work.szs.refund.domain.enums.TaxBracket;
 import com.work.szs.user.domain.User;
 import jakarta.persistence.*;
 import lombok.Getter;

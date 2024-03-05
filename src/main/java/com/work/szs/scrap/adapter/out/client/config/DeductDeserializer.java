@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.work.szs.scrap.adapter.out.client.dto.ScrapResult;
-import com.work.szs.scrap.domain.enums.DeductType;
+import com.work.szs.refund.domain.enums.DeductType;
 
 import java.io.IOException;
 import java.util.ArrayList;

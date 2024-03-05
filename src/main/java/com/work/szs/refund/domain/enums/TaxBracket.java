@@ -1,4 +1,4 @@
-package com.work.szs.scrap.domain.enums;
+package com.work.szs.refund.domain.enums;
 
 public enum TaxBracket {
     BRACKET1(0, 10_400_000, 0.06, 0),

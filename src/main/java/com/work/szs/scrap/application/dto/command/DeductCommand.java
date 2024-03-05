@@ -1,6 +1,6 @@
 package com.work.szs.scrap.application.dto.command;
 
-import com.work.szs.scrap.domain.enums.DeductType;
+import com.work.szs.refund.domain.enums.DeductType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

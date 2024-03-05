@@ -1,4 +1,4 @@
-package com.work.szs.scrap.domain.enums;
+package com.work.szs.refund.domain.enums;
 
 public enum DeductType {
     CREDIT_CARD,

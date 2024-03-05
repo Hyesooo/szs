@@ -3,7 +3,7 @@ package com.work.szs.refund.adapter.out.persistence;
 import com.work.szs.common.annotation.PersistenceAdapter;
 import com.work.szs.refund.application.port.persistence.LoadRefundResultPort;
 import com.work.szs.refund.application.port.persistence.UpdateRefundResultPort;
-import com.work.szs.scrap.domain.RefundResult;
+import com.work.szs.refund.domain.RefundResult;
 import com.work.szs.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

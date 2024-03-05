@@ -3,7 +3,7 @@ package com.work.szs.refund.application.service;
 import com.work.szs.common.config.TokenService;
 import com.work.szs.common.exception.BusinessInvalidValueException;
 import com.work.szs.refund.application.port.persistence.LoadRefundResultPort;
-import com.work.szs.scrap.domain.RefundResult;
+import com.work.szs.refund.domain.RefundResult;
 import com.work.szs.user.application.port.out.LoadUserPort;
 import com.work.szs.user.domain.User;
 import lombok.RequiredArgsConstructor;

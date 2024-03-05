@@ -1,7 +1,7 @@
 package com.work.szs.refund.adapter.out.persistence;
 
 
-import com.work.szs.scrap.domain.RefundResult;
+import com.work.szs.refund.domain.RefundResult;
 import com.work.szs.user.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
