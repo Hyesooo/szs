@@ -1,5 +1,6 @@
 package com.work.szs.user.domain;
 
+import com.work.szs.common.converter.CryptoConverter;
 import com.work.szs.common.entity.BaseEntity;
 import com.work.szs.common.exception.BusinessInvalidValueException;
 import jakarta.persistence.*;
@@ -26,6 +27,7 @@ public class User extends BaseEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Convert(converter = CryptoConverter.class)
     @Column(name = "regNo", nullable = false)
     private String regNo;
 

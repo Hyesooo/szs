@@ -16,7 +16,6 @@ import java.util.Map;
 public class JoinUserUseCase {
     private final UpdateUserPort updateUserPort;
     private final BCryptPasswordEncoder passwordEncoder;
-    private final TextEncryptor textEncryptor;
     private static final Map<String, String> permittedUserMap = Map.of(
             "동탁", "9211081582816",
             "관우", "6811081582816",
@@ -30,9 +29,8 @@ public class JoinUserUseCase {
         validatePermittedUser(joinUserRequest.getName(), parsedRegNo);
 
         joinUserRequest.setPassword(passwordEncoder.encode(joinUserRequest.getPassword()));
-        joinUserRequest.setRegNo(textEncryptor.encrypt(parsedRegNo));
 
-        User user = User.of(joinUserRequest.getUserId(), joinUserRequest.getPassword(), joinUserRequest.getName(), joinUserRequest.getRegNo());
+        User user = User.of(joinUserRequest.getUserId(), joinUserRequest.getPassword(), joinUserRequest.getName(), parsedRegNo);
         updateUserPort.joinUser(user);
     }
 
